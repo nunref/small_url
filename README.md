@@ -10,4 +10,4 @@ The web is build with learning purposes, there are no garantees.
 - [x] Running app.py should check if the database exists and create it if not.
 - [ ] Improve this README.
 - [x] Add a requirements.txt.
-- [ ] Correctly format the files.
+- [x] Correctly format the files.
