@@ -3,29 +3,25 @@ import urldb
 import random
 
 app = flask.Flask(__name__)
-#TODO: improve database management using the g object
-urldb = urldb.URLDB("small_url.db")
+urldb.init_app(app)
 
 @app.route("/", methods=["GET", "POST"])
 def hello_world():
+    db = urldb.get_db()
+
     if flask.request.method == "POST":
         random_code = generate_random_code()
-        urldb.connect()
-        urldb.insert_url(flask.request.form["url_input"], random_code)
-        urldb.disconnect()
+        db.insert_url(flask.request.form["url_input"], random_code)
         return flask.render_template("code_show.html", code=random_code)
     else:
-        urldb.connect()
-        registered_urls = urldb.get_many_urls()
-        urldb.disconnect()
+        registered_urls = db.get_many_urls()
         return flask.render_template("main.html", registered_urls = registered_urls)
  
 @app.route("/<code>")
 def redirect_to_code(code):
-    print(code)
-    urldb.connect()
-    original_url, short_code, date = urldb.get_url(code)
-    urldb.disconnect()
+    db = urldb.get_db()
+
+    original_url, short_code, date = db.get_url(code)
     return flask.redirect(original_url)
 
 def generate_random_code():

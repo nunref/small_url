@@ -1,5 +1,6 @@
 import sqlite3
 import datetime
+from flask import current_app, g
 
 class URLDB:
     def __init__(self, database_name):
@@ -21,9 +22,11 @@ class URLDB:
         self.disconnect()
 
     def connect(self):
+        print("connected")
         self.con = sqlite3.connect(self.database_name)
 
     def disconnect(self):
+        print("disconnected")
         self.con.close()
 
     def cursor(self):
@@ -63,4 +66,20 @@ class URLDB:
         cur.close()
 
         return res
+
+def get_db():
+    if "db" not in g:
+        g.db = URLDB("small_url.db")
+        g.db.connect()
+
+    return g.db
+
+def close_db(e = None):
+    db = g.pop("db", None)
+
+    if db is not None:
+        db.disconnect()
+
+def init_app(app):
+    app.teardown_appcontext(close_db)
 
