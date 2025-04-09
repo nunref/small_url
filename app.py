@@ -11,7 +11,7 @@ def hello_world():
     if flask.request.method == "POST":
         random_code = generate_random_code()
         urldb.insert_url(flask.request.form["url_input"], random_code)
-        return flask.render_template("shorted.html", code=random_code)
+        return flask.render_template("code_show.html", code=random_code)
     else:
         return flask.render_template("main.html", registered_urls = urldb.get_many_urls())
  
