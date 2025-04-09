@@ -38,3 +38,15 @@ h2 {
     color: #545454;
 }
 
+table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    border: 1px solid grey;
+    width: 20rem;
+    text-align: center;
+}
+

@@ -40,8 +40,17 @@ class URLDB:
 
         cur.close()
         con.close()
-        print(res)
         return (res[0], res[1], datetime.datetime.fromisoformat(res[2]))
 
-    def get_all_url(self):
-        pass
+    def get_many_urls(self, urls_number=5):
+        SQL = "select original_url, short_code from url order by date desc limit ?;"
+        params = (urls_number,)
+
+        con = sqlite3.connect(self.database_name)
+        cur = con.cursor()
+        res = cur.execute(SQL, params).fetchall()
+
+        cur.close()
+        con.close()
+        return res
+

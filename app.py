@@ -13,7 +13,7 @@ def hello_world():
         urldb.insert_url(flask.request.form["url_input"], random_code)
         return flask.render_template("shorted.html", code=random_code)
     else:
-        return flask.render_template("main.html")
+        return flask.render_template("main.html", registered_urls = urldb.get_many_urls())
  
 @app.route("/<code>")
 def redirect_to_code(code):
