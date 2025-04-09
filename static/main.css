@@ -32,3 +32,9 @@ p {
 h2 {
   text-align: center;
 }
+
+.input_advice {
+    font-size: 80%;
+    color: #545454;
+}
+
