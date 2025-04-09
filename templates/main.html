@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Small URL</title>
+        <link href= "{{url_for("static", filename="main.css")}}" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Shorten your URL</h1>
+        <form method="POST">
+            <input
+                type="text"
+                id="url"
+                name="url_input"
+                required
+            />
+            <button>Shorten</button>
+        </form>
+    </body>
+</html>
+
