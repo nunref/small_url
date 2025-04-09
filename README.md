@@ -9,5 +9,5 @@ The web is build with learning purposes, there are no garantees.
 - [x] Add validation to check that the original url is a url
 - [x] Running app.py should check if the database exists and create it if not.
 - [ ] Improve this README.
-- [ ] Add a requirements.txt.
+- [x] Add a requirements.txt.
 - [ ] Correctly format the files.
