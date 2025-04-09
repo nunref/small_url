@@ -5,6 +5,18 @@ class URLDB:
     def __init__(self, database_name):
         self.database_name = database_name
 
+        CREATE_TABLE_SQL = """
+            CREATE TABLE IF NOT EXISTS url(
+                id INTEGER PRIMARY KEY,
+                original_url TEXT NOT NULL,
+                short_code TEXT NOT NULL,
+                date TEXT NOT NULL
+            )
+        """
+        con = sqlite3.connect(self.database_name)
+        cur = con.cursor()
+        cur.execute(CREATE_TABLE_SQL)
+
     def insert_url(self, original_url, short_code):
         SQL = "insert into url (original_url, short_code, date) values (?, ?, ?);"
         current_time = datetime.datetime.now()
