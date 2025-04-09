@@ -5,6 +5,7 @@ from flask import current_app, g
 
 DATABASE_NAME = "small_url.db"
 
+
 class URLDB:
     def __init__(self, database_name):
         self.database_name = database_name
@@ -54,6 +55,7 @@ class URLDB:
 
         return res
 
+
 def get_db():
     if "db" not in g:
         g.db = URLDB(DATABASE_NAME)
@@ -61,15 +63,18 @@ def get_db():
 
     return g.db
 
-def close_db(e = None):
+
+def close_db(e=None):
     db = g.pop("db", None)
 
     if db is not None:
         db.disconnect()
 
+
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
 
 def init_db():
     DROP_TABLE_SQL = "DROP TABLE IF EXISTS url;"
@@ -88,6 +93,7 @@ def init_db():
     cur.execute(CREATE_TABLE_SQL)
     cur.close()
     urldb.disconnect()
+
 
 @click.command("init-db")
 def init_db_command():
