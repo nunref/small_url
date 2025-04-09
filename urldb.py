@@ -72,7 +72,7 @@ def init_app(app):
     app.cli.add_command(init_db_command)
 
 def init_db():
-    DROP_TABLE_SQL = "DROP TABLE IF EXISTS url";
+    DROP_TABLE_SQL = "DROP TABLE IF EXISTS url;"
     CREATE_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS url(
             id INTEGER PRIMARY KEY,
