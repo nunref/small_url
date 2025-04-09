@@ -11,11 +11,9 @@ class URLDB:
         self.con = None
 
     def connect(self):
-        print("connected")
         self.con = sqlite3.connect(self.database_name)
 
     def disconnect(self):
-        print("disconnected")
         self.con.close()
 
     def cursor(self):
